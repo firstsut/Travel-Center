@@ -1,0 +1,60 @@
+<?page title="ค้นหาแพ็คแกจสถานที่ท่องเที่ยวและที่พัก" contentType="text/html;charset=UTF-8"?>
+<window title="ค้นหาแพ็คแกจสถานที่ท่องเที่ยวและที่พัก" width="1000px" height="1000px" border="normal"
+	apply="mvc.PackagesComposer" zclass="z-window-overlapped"  style="margin: auto;padding-top: 50px;" >
+	<caption image="images/house.png" style="font-weight: bold;"/>
+	<style>
+    		body {
+    			background:#FFFFFF url('images/travel-bg.jpg') no-repeat center top;
+    		}
+    		.bold {
+    			font-weight: bold;
+    		}
+    	</style>
+    	<panel border="normal" width="100%">
+				<panelchildren>
+					<grid style="border:0;" xmlns:ca="client/attribute" ca:data-scrollable="false">
+					<rows>
+						<row><div><a href="packages.zul"><image src="images/house.png"/><separator orient="vertical"/><toolbarbutton label="หน้าแรก"/></a></div><div><a href="accomminations.zul"><image src="images/newspaper.png"/><separator orient="vertical"/><toolbarbutton label="ที่พัก"/></a></div><div><a href="restaurants.zul"><image src="images/cup.png"/><separator orient="vertical"/><toolbarbutton label="ร้านอาหาร"/></a></div><div><a href="maps.zul"><image src="images/map.png"/><separator orient="vertical"/><toolbarbutton label="แผนที่-การเดินทาง"/></a></div><div><a href="souvenirs.zul"><image src="images/cart.png"/><separator orient="vertical"/><toolbarbutton label="ของฝาก"/></a></div></row>
+					</rows>
+					</grid>
+				</panelchildren>
+				</panel>
+				<separator />
+	<hbox align="center">
+		<textbox id="keywordBox" placeholder="ค้นหาแพ็คเกจ" />
+		<button id="searchButton" label="ค้นหา" image="images/zoom.png" hoverImage="images/zoom_in.png" />
+	</hbox>
+	<hbox style="margin-top:20px" id="detailBox" visible="false">
+
+		<image id="previewImage" style="padding:10px" />
+		<vbox>
+			<hlayout>
+				ชื่อแพ็คเกจ : <label id="modelLabel" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				จังหวัด : <label id="provinceLabel" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				ราคา : 
+				<span>฿<label id="priceLabel" style="font-weight:bold"/></span>
+			</hlayout>
+			<label id="descriptionLabel" />
+		</vbox>
+	</hbox>
+	<listbox id="packagesListbox" emptyMessage="ไม่พบผลการค้นหาหรือท่านยังไม่ได้ทำการค้นหา" height="600px" style="margin-top:10px">
+		<listhead>
+			<listheader label="รูปภาพ" width="120px" />
+			<listheader label="ชื่อแพ็คเกจ" />
+			<listheader label="จังหวัด" />
+			<listheader label="ราคา" width="20%"/>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell><image src="${each.image}" width="120px" /></listcell>
+				<listcell label="${each.model}"></listcell>
+				<listcell label="${each.province}"></listcell>
+				<listcell>฿<label value="${each.price}" /></listcell>
+			</listitem>
+		</template>
+	</listbox>
+</window>
